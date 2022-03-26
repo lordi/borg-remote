@@ -1,5 +1,5 @@
 FROM alpine:3
-LABEL maintainer="b3vis"
+LABEL maintainer="lordi"
 
 #Install Borg & SSH
 RUN apk add --no-cache openssh=8.8_p1-r1 sshfs=3.7.2-r0 borgbackup=1.1.17-r2 supervisor=4.2.2-r2
