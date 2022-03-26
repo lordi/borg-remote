@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  borg:
+    build: .
+    volumes:
+      - ssh-host-config:/etc/ssh
+      - ${DEST_DIR}:/backup
+    environment:
+      - TZ=Europe/Berlin
+      - SSH_PUB_RSA=${SSH_PUB_RSA}
+    ports:
+      - "${FORWARD_PORT}:22"
+
+volumes:
+  ssh-host-config:

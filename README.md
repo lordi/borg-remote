@@ -1,26 +1,28 @@
-# Borg Backup Server Container
-![alt text](https://borgbackup.readthedocs.io/en/stable/_static/logo.png "Borgbackup")
+# Borg Backup Remote To Local
 
-### Description
+## Description
 
-My take on a Borgbackup Server as a Docker container to faciliate the backing up of remote machines using [Borgbackup](https://github.com/borgbackup)
+[Borgbackup](https://github.com/borgbackup) does not have support yet for
+backing up a remote server to a local destination (or a destination that we can
+only access from local). The workaround mentioned in the docs is via `sshfs`
+which is very slow.
 
-### Usage
+This repository contains a Docker image for a local borg server and a script
+that will spin up a local borg server, connect via SSH to remote server and
+backup your files via a SSH tunnel. This way, the file collector will be fast
+as it runs on the remote server but the backup will still be stored locally.
 
-I personally like to split my ssh keys out of the main container to make updates and management easier. To achieve this I create a persistent storage container;
+## Usage
 
-`docker run -d -v /home/borg/.ssh --name borg-keys-storage busybox:latest`
+ 1. Local requirements:
+   * Docker
+   * Docker Compose
+ 2. Remote requirements:
+   * borg
+   * generated ssh key (e.g. `~/.ssh/id_rsa`)
+ 3. Copy `.env.default` to `.env` and fill out the details.
+ 4. Run `backup.sh`
 
-* Container Creation:
-```
-docker create \
-  --name=borg-server \
-  --restart=always \
-  --volumes-from borg-keys-storage \
-  -v path/to/backups:/backups \
-  -p 2022:22 \
-  ghcr.io/grantbevis/borg-server
-```
+## Disclaimer
 
-### Note
-After creating the container you will need to start the container add your own public keys.
+Use at your own risk, this is highly experimental.
