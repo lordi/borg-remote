@@ -1,4 +1,4 @@
-# Borg Backup Remote To Local
+# Borg Remote To Local
 ![alt text](https://borgbackup.readthedocs.io/en/stable/_static/logo.png "Borgbackup")
 
 ## Description
@@ -9,9 +9,10 @@ only access from local). The workaround mentioned in the docs is via `sshfs`
 which is very slow.
 
 This repository contains a Docker image for a local borg server and a script
-that will spin up a local borg server, connect via SSH to remote server and
-backup your files via a SSH tunnel. This way, the file collector will be fast
-as it runs on the remote server but the backup will still be stored locally.
+that will spin up the borg server, connect to a remote SSH server and backup
+your files via a SSH tunnel to the local borg server. This way, the file
+collector will be fast as it runs on the remote server but the backup will
+still be stored locally.
 
 Based on [grantbevis/borg-server](https://github.com/grantbevis/borg-server).
 
