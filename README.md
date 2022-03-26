@@ -12,16 +12,22 @@ that will spin up a local borg server, connect via SSH to remote server and
 backup your files via a SSH tunnel. This way, the file collector will be fast
 as it runs on the remote server but the backup will still be stored locally.
 
+## Requirements
+
+Local requirements:
+
+ * Docker
+ * Docker Compose
+
+Remote requirements:
+
+ * borg
+ * generated ssh key (e.g. `~/.ssh/id_rsa`)
+
 ## Usage
 
- 1. Local requirements:
-   * Docker
-   * Docker Compose
- 2. Remote requirements:
-   * borg
-   * generated ssh key (e.g. `~/.ssh/id_rsa`)
- 3. Copy `.env.default` to `.env` and fill out the details.
- 4. Run `backup.sh`
+ 1. Copy `.env.default` to `.env` and fill out the details.
+ 2. Run `backup.sh`
 
 ## Disclaimer
 
