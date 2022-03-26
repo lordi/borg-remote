@@ -3,6 +3,7 @@
 
 ## Description
 
+Backup a remote server to local filesytem using Borg.
 [BorgBackup](https://github.com/borgbackup) does not have support yet for
 backing up a remote server to a local destination (or a destination that we can
 only access from local). The workaround mentioned in the docs is via `sshfs`
