@@ -10,6 +10,7 @@ ssh -R localhost:${FORWARD_PORT}:localhost:${FORWARD_PORT} ${SRC_HOST} <<EOF
   export BORG_RSH="ssh -o StrictHostKeyChecking=no"
   export BORG_REPO=ssh://borg@localhost:${FORWARD_PORT}/backup
   export BORG_RELOCATED_REPO_ACCESS_IS_OK=yes
+  export BORG_UNKNOWN_UNENCRYPTED_REPO_ACCESS_IS_OK=yes
 
   borg init -v --encryption=repokey ::
   borg create -s --list ::{now:%Y-%m-%d} ${SRC_DIRS}
